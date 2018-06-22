@@ -21,7 +21,7 @@ const db = knex({
 
 const app = express();
 app.get('/',(req,res)=>{
-  res.send(database.users);
+  res.send('Oh hi, Server running');
 })
 
 app.use(BodyParser.json());
