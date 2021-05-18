@@ -20,11 +20,12 @@ const db = knex({
 });
 
 const app = express();
+app.use(cors());
+
 app.get('/', (req, res) => {
   res.send('Oh hi, Server running');
 });
 
-app.use(cors());
 app.use(BodyParser.json());
 
 app.post('/signin', (req, res) => {
