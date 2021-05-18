@@ -1,7 +1,7 @@
 const express = require('express');
 const BodyParser = require('body-parser');
 const bcrypt = require('bcrypt-nodejs');
-const Cors = require('cors');
+var cors = require('cors');
 const knex = require('knex');
 const register = require('./Controller/register');
 const Sign = require('./Controller/signin');
@@ -24,29 +24,9 @@ app.get('/', (req, res) => {
   res.send('Oh hi, Server running');
 });
 
+app.use(cors());
 app.use(BodyParser.json());
-app.use(Cors());
 
-const database = {
-  users: [
-    {
-      id: 123,
-      name: 'john',
-      email: 'john@gmail.com',
-      password: 'cookies',
-      entries: 0,
-      join: new Date()
-    },
-    {
-      id: 124,
-      name: 'john baba',
-      email: 'baba@gmail.com',
-      counter: 0,
-      password: 'cookies123',
-      join: new Date()
-    }
-  ]
-};
 app.post('/signin', (req, res) => {
   Sign.signinHandler(req, res, db, bcrypt);
 });
